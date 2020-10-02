@@ -3,6 +3,7 @@ const postcategory = require('../models/postCategory')
 
 module.exports = {
     index : async (req, res) => {
+        console.log(req.params)
         const postProduct = await postproduct.find().lean().sort()
         const postCategory = await postcategory.find().lean().sort()
         res.render('homepage/index', { postProduct : postProduct, postCategory : postCategory })
@@ -21,8 +22,8 @@ module.exports = {
         res.render('homepage/contact')
     },
 
-    detailProduct : async (req,res) => {
-        const postProduct = await postproduct.findOne({ id : req.params.id }).lean().exec()
+    detailProduct : async (req, res) => {
+        const postProduct = await postproduct.findOne({ _id : req.params.id }).lean()
         res.render('homepage/detailProduct', { postProduct : postProduct })
     }
 }

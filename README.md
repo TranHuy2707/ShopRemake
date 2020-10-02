@@ -9,9 +9,9 @@
 -- chức năng đăng nhập dựa vào session      
 
 --  chức năng đăng sản phẩm
-    +   đăng sản phẩm theo từng loại mặt hàng
-        +   đăng sản phẩm           
-    +   hiển thị sản phẩm ra trang web
+    +   đăng sản phẩm theo từng loại mặt hàng- done
+        +   đăng sản phẩm                    - done
+    +   hiển thị sản phẩm ra trang web      (theo từng sản phẩm)
 
 --  chức năng thanh toán
     +   giỏ hàng

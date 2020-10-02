@@ -17,8 +17,6 @@ router.get('/shop', shopRouter.shop);
 
 router.get('/contact', shopRouter.contact);
 
-// router.get('/detailProduct', shopRouter.detailProduct);
-
 router.get('/login', adminRouter.login);
 
 router.get('/add/postProduct', adminRouter.postProduct);
