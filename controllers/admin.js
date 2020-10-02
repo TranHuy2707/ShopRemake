@@ -1,5 +1,6 @@
 const session = require('session');
 const postProduct = require('../models/postProduct');
+const postcategory = require('../models/postCategory');
 
 module.exports = {
     login : function (req, res) {
@@ -14,8 +15,9 @@ module.exports = {
         res.render('admin/postCategory')
     },
 
-    postProduct : function (req, res) {
-        res.render('admin/postProduct')
+    postProduct : async (req, res) => {
+        const postCategory = await postcategory.find().lean().sort()
+        res.render('admin/postProduct', { postCategory : postCategory })
     },
 
     authenLogin : function (req,res) {

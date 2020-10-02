@@ -37,7 +37,13 @@
 						<form class="form-horizontal form-label-left" action="/postProduct" enctype="multipart/form-data" method="POST">
 							<div class="form-group row">
 								<div class="col-auto my-1">
-									
+									<label class="mr-sm-2" for="list">Danh mục</label>
+									<select class="custom-select mr-sm-2" name="list">
+									  <option selected>Chọn....</option>
+									  <% for (var i = 0; i < postCategory.length; i++) { %>
+									  <option value="<%= postCategory[i].list %>"><%= postCategory[i].list %></option>
+									  <% } %>
+									</select>
 							    </div>
 							</div>
 							<div class="form-group row">

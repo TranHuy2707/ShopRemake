@@ -3,9 +3,10 @@ var router = express.Router();
 var shopRouter = require('../controllers/shop');
 var adminRouter = require('../controllers/admin');
 var multer = require('multer');
-var upload = multer({ dest : './public/uploads' }).fields([{ name : 'img',
-                                                               maxCount : 1  }])
+var upload = multer({ dest : './public/uploads' }).fields([{ name : 'img', maxCount : 1  },
+                                                           { name : 'img1', maxCount : 1  }])
 var postProduct = require('../models/postProduct');
+var postCategory = require('../models/postCategory');
 
 // router GET
 router.get('/', shopRouter.index);
@@ -16,30 +17,46 @@ router.get('/shop', shopRouter.shop);
 
 router.get('/contact', shopRouter.contact);
 
-router.get('/detailProduct', shopRouter.detailProduct);
+// router.get('/detailProduct', shopRouter.detailProduct);
 
 router.get('/login', adminRouter.login);
 
 router.get('/add/postProduct', adminRouter.postProduct);
 
-// router.get('/adminsite32157623', adminRouter.adminSite);  //bảo mật lại sau khi hoàn thành trang web
+router.get('/add/postCategory', adminRouter.postCategory);
 
+router.get('/shop/:id', shopRouter.detailProduct);
 
 // router Post
 router.post('/login', adminRouter.authenLogin);
 
-// router.post('/postProduct', adminRouter.postProductUpload);
+router.post('/postCategory', upload, function (req, res) {
+    const {
+        list,
+        name_crate
+    } = req.body
+
+    const image = req.files['img1'][0].path.split('\\').slice(1).join('\\')
+
+    const newPostCategory = {
+        list : list,
+        name_crate : name_crate,
+        image : image
+    }
+
+    const newPost = new postCategory(newPostCategory)
+    newPost.save()
+
+    res.redirect('/add/postCategory')
+})
 
 router.post('/postProduct', upload, function (req, res) {
-
-    console.log(req.body);
-    console.log(req.files);
-
     const {
         name,
         price,
         detail,
-        size
+        size,
+        list
     } = req.body
 
     const image = req.files['img'][0].path.split('\\').slice(1).join('\\')
@@ -49,7 +66,8 @@ router.post('/postProduct', upload, function (req, res) {
         price : price,
         detail : detail,
         size : size,
-        image : image
+        image : image,
+        list : list
     }
 
     const newPost = new postProduct(newPostProduct)

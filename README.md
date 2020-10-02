@@ -10,7 +10,7 @@
 
 --  chức năng đăng sản phẩm
     +   đăng sản phẩm theo từng loại mặt hàng
-        +   đăng sản phẩm
+        +   đăng sản phẩm           
     +   hiển thị sản phẩm ra trang web
 
 --  chức năng thanh toán

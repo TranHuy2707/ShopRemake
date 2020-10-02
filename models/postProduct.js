@@ -21,6 +21,10 @@ const postProduct = new Schema ({
     image : {
         type : String,
         require : true
+    },
+    list : {
+        type : String,
+        require : true
     }
 })
 
